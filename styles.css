@@ -238,7 +238,7 @@ input:focus {
 
 @media (max-width: 720px) {
     .nav-bar {
-        padding: 0 20px 0 0;
+        padding: 0 20px 0 10px;
         border:none;
         height: 55px;
     }
