@@ -27,6 +27,7 @@
 
 body {
     height: 100vh;
+    width: 100%;
 }
 
 .nav-bar {
@@ -81,6 +82,7 @@ input:focus {
 }
 
 .nav-icons{
+    width: 100%;
     display: none;
     cursor: pointer;
 }
@@ -254,12 +256,15 @@ display: none;
     }
 
     .hamburger-menu {
-        margin: 0 10px 0 0;
+        margin: 0;
         display: block;
     }
 
     .main-container{
-        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
     }
     .side-bar{
         display: none;
@@ -284,6 +289,7 @@ display: none;
         list-style: none;
         align-items: center;
         justify-content: center;
+        width: 100%;
         gap:30px;
         border-bottom: 1px solid var(--border-light);
     }
