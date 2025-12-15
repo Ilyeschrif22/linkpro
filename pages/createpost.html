@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Linkpro - Publier une Question</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <style>
+        /* Base styles */
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Styles d'animation pour la barre latérale */
+        .side-bar-item::after,
+        .side-bar-home::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #7C3AED;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .side-bar-item.active::after,
+        .side-bar-home.active::after {
+            width: 100%;
+        }
+
+        /* Fine-tuning for very small screens (under 400px) */
+        @media (max-width: 400px) {
+             .content-wrapper {
+                padding: 0.5rem; /* p-2 instead of p-3/p-6 */
+             }
+             .publish-container {
+                padding: 1rem !important; /* p-4 instead of p-8 */
+             }
+        }
+    </style>
+    </head>
+    <body class="bg-gray-50">
+
+        <nav
+            class="bg-white px-10 py-4 flex items-center justify-between border-b max-sm:px-3 sticky top-0 z-50">
+            <a href="home.html">
+                <img
+                    src="./icons/Linkpro.svg"
+                    alt="Linkpro Logo"
+                    class="h-10 w-auto object-contain cursor-pointer" />
+            </a>
+
+            <div class="flex-1 max-w-md mx-8 max-sm:hidden">
+                <div class="relative">
+                    <input type="text"
+                        placeholder="Search"
+                        class="w-full px-5 py-2 bg-gray-100 rounded-full border border-gray-200 outline-none focus:border-purple-600">
+                    <svg
+                        class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 max-[400px]:gap-3">
+                <button
+                    class="relative text-gray-600 hover:text-purple-600 max-[400px]:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button class="relative">
+                    <svg class="w-6 h-6 max-[400px]:w-5 max-[400px]:h-5"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <span
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
+                </button>
+                <button class="relative">
+                    <svg class="w-6 h-6 max-[400px]:w-5 max-[400px]:h-5"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">1</span>
+                </button>
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full max-sm:hidden"></div>
+            </div>
+        </nav>
+
+        <div
+            class="flex justify-start gap-6 p-6 max-w-[1400px] mx-auto min-h-[calc(100vh-80px)] content-wrapper max-sm:p-3 max-[400px]:p-2">
+
+            <div class="w-56 flex-shrink-0 max-lg:hidden">
+                <div
+                    class="bg-white rounded-lg border border-gray-200 p-5 sticky top-20">
+                    <ul class="space-y-4">
+                        <li
+                            class="side-bar-home flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Home
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                            </svg>
+                            Vos projets
+                        </li>
+                        <li
+                            class="side-bar-item active flex items-center gap-3 cursor-pointer relative font-medium text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Les questions
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                            </svg>
+                            Les reponses
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            Liste des profs
+                        </li>
+                    </ul>
+
+                    <div class="w-full h-px bg-gray-200 my-6"></div>
+
+                    <div>
+                        <h3 class="font-semibold mb-4">Categories</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">Javascript</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-600">+99</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">PHP</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-600">+48</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">Development web</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-600">+99</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">CSS</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-600">+29</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">React</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-600">+55</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 max-w-[calc(100%-240px)] max-lg:max-w-full">
+                <div id="publish-content">
+                    <div
+                        class="bg-white rounded-lg border border-gray-200 p-8 shadow-md min-h-[600px] publish-container max-sm:p-4">
+                        <h1
+                            class="text-2xl font-bold text-gray-800 mb-6 max-sm:text-xl max-[400px]:text-lg">Partagez
+                            vos questions et vos problèmes</h1>
+
+                        <div
+                            class="grid grid-cols-2 gap-6 mb-6 max-sm:grid-cols-1 max-sm:gap-4">
+                            <div>
+                                <label for="categories"
+                                    class="block text-sm font-medium text-gray-700 mb-2">Categories</label>
+                                <select id="categories"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 max-[400px]:px-3 max-[400px]:py-1.5 max-[400px]:text-sm">
+                                    <option>Sélectionner</option>
+                                    <option>Javascript</option>
+                                    <option>PHP</option>
+                                    <option>Development web</option>
+                                    <option>CSS</option>
+                                    <option>React</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="tags"
+                                    class="block text-sm font-medium text-gray-700 mb-2">Tags</label>
+                                <div id="tags"
+                                    class="flex flex-wrap gap-2 items-center min-h-[40px] border border-gray-300 rounded-lg p-2 max-[400px]:p-1">
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full max-[400px]:text-xs max-[400px]:px-2 max-[400px]:py-0.5">
+                                        Javascript
+                                        <button
+                                            class="ml-1 text-purple-600 hover:text-purple-800">
+                                            <svg
+                                                class="w-4 h-4 max-[400px]:w-3 max-[400px]:h-3"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"><path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" /></svg>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 max-sm:mb-4">
+                            <label for="title"
+                                class="block text-sm font-medium text-gray-700 mb-2">Titre
+                                de votre publication</label>
+                            <input type="text" id="title" placeholder=" "
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 max-[400px]:px-3 max-[400px]:py-1.5 max-[400px]:text-sm">
+                        </div>
+
+                        <div class="mb-6 max-sm:mb-4">
+                            <label for="description"
+                                class="block text-sm font-medium text-gray-700 mb-2">Description
+                                de votre problème</label>
+                            <textarea id="description"
+                                placeholder="Écrivez quelque chose..." rows="8"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 resize-none max-[400px]:px-3 max-[400px]:py-1.5 max-[400px]:text-sm"></textarea>
+                        </div>
+
+                        <div class="mb-8 max-sm:mb-6">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2">Ajouter
+                                media</label>
+                            <div
+                                class="flex items-center justify-center w-full">
+                                <label for="dropzone-file"
+                                    class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 max-[400px]:h-24">
+                                    <div
+                                        class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <svg
+                                            class="w-8 h-8 mb-3 text-gray-400 max-[400px]:w-6 max-[400px]:h-6"
+                                            fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-9-9h4M4 20h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <p
+                                            class="mb-2 text-sm text-gray-500 max-[400px]:text-xs"><span
+                                                class="font-semibold">Click to
+                                                upload</span> or drag and
+                                            drop</p>
+                                        <p
+                                            class="text-xs text-gray-500 max-[400px]:text-[0.6rem]">PNG,
+                                            JPG, GIF (MAX. 800x400px)</p>
+                                    </div>
+                                    <input id="dropzone-file" type="file"
+                                        class="hidden" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex justify-end gap-3 pt-4 border-t border-gray-200 max-sm:pt-3">
+                            <button
+                                class="px-5 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 max-[400px]:px-3 max-[400px]:py-1.5 max-[400px]:text-xs">
+                                Annuler
+                            </button>
+                            <button
+                                class="px-5 py-2 text-sm font-medium text-purple-600 border border-purple-600 rounded-lg hover:bg-purple-50 max-[400px]:px-3 max-[400px]:py-1.5 max-[400px]:text-xs">
+                                Draft
+                            </button>
+                            <button
+                                class="px-5 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 max-[400px]:px-3 max-[400px]:py-1.5 max-[400px]:text-xs">
+                                Partager
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+        // Simple script to handle active state on sidebar (optional but good practice)
+        const sidebarItems = document.querySelectorAll('.side-bar-item, .side-bar-home');
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => {
+                sidebarItems.forEach(i => i.classList.remove('active', 'text-purple-600'));
+                item.classList.add('active', 'text-purple-600');
+            });
+        });
+        
+        // Ensure 'Les questions' is active on load for this specific page
+        document.addEventListener('DOMContentLoaded', () => {
+             const questionsItem = document.querySelector('.side-bar-item:nth-child(3)');
+             if(questionsItem) {
+                sidebarItems.forEach(i => i.classList.remove('active', 'text-purple-600'));
+                questionsItem.classList.add('active', 'text-purple-600');
+             }
+        });
+    </script>
+
+    </body>
+</html>
