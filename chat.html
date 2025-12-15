@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Linkpro - Messages</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <style>
+        /* Base styles */
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Styles d'animation pour les barres de navigation */
+        .side-bar-item::after,
+        .side-bar-home::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #7C3AED;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .side-bar-item.active::after,
+        .side-bar-home.active::after {
+            width: 100%;
+        }
+        
+        .contact-item:hover {
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+
+        .contact-item.active {
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+
+        /* Hauteur pour le conteneur du chat sur mobile */
+        /* Adjusted height for responsiveness on small viewports */
+        .chat-container-mobile {
+            min-height: calc(100vh - 80px - 24px - 24px); 
+        }
+
+        /* Classe pour forcer l'affichage sur mobile */
+        .show-on-mobile {
+            display: flex !important;
+        }
+        
+        /* Classe pour forcer le masquage sur mobile */
+        .hide-on-mobile {
+            display: none !important;
+        }
+
+        /* NEW: Fine-tuning for very small screens (under 400px, where sm: starts at 640px) */
+        @media (max-width: 400px) {
+             /* 1. Reduce padding/gap in contact list items */
+            .contact-item {
+                padding: 0.75rem !important; /* py-3 instead of p-4 */
+            }
+
+            /* 2. Smaller avatar in contact list */
+            .contact-item .contact-avatar-mobile {
+                width: 2.5rem; /* w-10 instead of w-12 */
+                height: 2.5rem; /* h-10 instead of h-12 */
+            }
+
+            /* 3. Reduce margin next to avatar in contact list */
+            .contact-item .ml-4 {
+                margin-left: 0.5rem !important; /* ml-2 instead of ml-4 */
+            }
+
+             /* 4. Reduce max width of message bubbles for tiny screens */
+            .msg-bubble-wrapper {
+                max-width: 80% !important; /* Allow bubbles to take more width */
+            }
+
+            /* 5. Reduce padding in chat input area */
+            .chat-input-area {
+                padding: 0.75rem !important; /* p-3 instead of p-4 */
+            }
+        }
+    </style>
+    </head>
+    <body class="bg-gray-50">
+
+        <nav
+            class="bg-white px-10 py-4 flex items-center justify-between border-b max-sm:px-3 sticky top-0 z-50">
+            <a href="home.html">
+                <img
+                    src="./icons/Linkpro.svg"
+                    alt="Linkpro Logo"
+                    class="h-10 w-auto object-contain cursor-pointer" />
+            </a>
+
+            <div class="flex-1 max-w-md mx-8 max-sm:hidden">
+                <div class="relative">
+                    <input type="text"
+                        placeholder="Search"
+                        class="w-full px-5 py-2 bg-gray-100 rounded-full border border-gray-200 outline-none focus:border-purple-600">
+                    <svg
+                        class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 max-[400px]:gap-3">
+                <button class="relative max-[400px]:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button class="relative">
+                    <svg class="w-6 h-6 max-[400px]:w-5 max-[400px]:h-5"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <span
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
+                </button>
+                <button class="relative">
+                    <svg class="w-6 h-6 max-[400px]:w-5 max-[400px]:h-5"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">1</span>
+                </button>
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full max-sm:hidden"></div>
+            </div>
+        </nav>
+
+        <div
+            class="flex justify-start gap-6 p-6 max-w-[1400px] mx-auto min-h-[calc(100vh-80px)] max-sm:p-3 max-[400px]:p-2">
+            <div class="w-56 flex-shrink-0 max-lg:hidden">
+                <div
+                    class="bg-white rounded-lg border border-gray-200 p-5 sticky top-20">
+                    <ul class="space-y-4">
+                        <li
+                            class="side-bar-home flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Home
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                            </svg>
+                            Vos projets
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Les questions
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                            </svg>
+                            Les reponses
+                        </li>
+                        <li
+                            class="side-bar-item active flex items-center gap-3 cursor-pointer relative font-medium text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            Liste des profs
+                        </li>
+                    </ul>
+
+                    <div class="w-full h-px bg-gray-200 my-6"></div>
+
+                    <div>
+                        <h3 class="font-semibold mb-4">Categories</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">Javascript</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200  text-gray-600">+99</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">PHP</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200  text-gray-600">+48</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">Development web</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200  text-gray-600">+99</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">CSS</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200  text-gray-600">+29</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm">React</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200  text-gray-600">+55</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 max-w-[calc(100%-240px)] max-lg:max-w-full">
+
+                <div id="chat-interface"
+                    class="flex bg-white rounded-lg border border-gray-200 min-h-[600px] overflow-hidden chat-container-mobile">
+
+                    <div id="contact-list"
+                        class="w-80 border-r border-gray-200 flex flex-col flex-shrink-0 max-sm:w-full max-sm:border-r-0 max-sm:border-b">
+
+                        <div
+                            class="p-4 border-b border-gray-100 flex-shrink-0 max-sm:p-3 max-[400px]:px-2 max-[400px]:py-3">
+                            <div class="relative">
+                                <input type="text"
+                                    placeholder="Rechercher un professeur ou un ami"
+                                    class="w-full px-4 py-2 bg-gray-100 rounded-lg border border-gray-200 outline-none focus:border-purple-600 text-sm pr-10">
+                                <svg
+                                    class="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+                                    fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex border-b border-gray-200 flex-shrink-0">
+                            <button
+                                class="flex-1 py-3 text-center font-medium text-sm border-b-2 border-purple-600 text-purple-600">Vos
+                                professeurs</button>
+                            <button
+                                class="flex-1 py-3 text-center font-medium text-sm text-gray-500 hover:text-purple-600">Vos
+                                amis</button>
+                        </div>
+
+                        <div class="overflow-y-auto flex-1">
+                            <div
+                                class="contact-item active flex items-center p-4 border-b border-gray-100 cursor-pointer relative"
+                                data-contact-name="Imen el hakim"
+                                onclick="showChat('Imen el hakim', 'Professeur UX design', 'https://i.pravatar.cc/150?img=1', true)">
+                                <div class="relative flex-shrink-0">
+                                    <img src="https://i.pravatar.cc/150?img=1"
+                                        alt="Imen el hakim"
+                                        class="w-12 h-12 rounded-full object-cover contact-avatar-mobile">
+                                    <span
+                                        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                                </div>
+                                <div class="ml-4 flex-1 overflow-hidden">
+                                    <div
+                                        class="font-semibold text-gray-800 truncate max-sm:text-sm">Imen
+                                        el hakim</div>
+                                    <div
+                                        class="text-sm text-gray-500 truncate max-sm:text-xs">Professeur
+                                        UX design</div>
+                                </div>
+                                <button
+                                    class="w-5 h-5 text-gray-400 max-sm:hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div
+                                class="contact-item flex items-center p-4 border-b border-gray-100 cursor-pointer relative"
+                                data-contact-name="Wiem Baazouzi"
+                                onclick="showChat('Wiem Baazouzi', 'Professeur base de données', 'https://i.pravatar.cc/150?img=2', false)">
+                                <div class="relative flex-shrink-0">
+                                    <img src="https://i.pravatar.cc/150?img=2"
+                                        alt="Wiem Baazouzi"
+                                        class="w-12 h-12 rounded-full object-cover contact-avatar-mobile">
+                                </div>
+                                <div class="ml-4 flex-1 overflow-hidden">
+                                    <div
+                                        class="font-semibold text-gray-800 truncate max-sm:text-sm">Wiem
+                                        Baazouzi</div>
+                                    <div
+                                        class="text-sm text-gray-500 truncate max-sm:text-xs">Professeur
+                                        base de données</div>
+                                </div>
+                                <span
+                                    class="w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium flex-shrink-0 max-[400px]:w-4 max-[400px]:h-4 max-[400px]:text-[0.6rem]">1</span>
+                            </div>
+
+                            <div
+                                class="contact-item flex items-center p-4 border-b border-gray-100 cursor-pointer relative"
+                                data-contact-name="Imen el hakim 2"
+                                onclick="showChat('Imen el hakim 2', 'Professeur UX design', 'https://i.pravatar.cc/150?img=3', false)">
+                                <div class="relative flex-shrink-0">
+                                    <img src="https://i.pravatar.cc/150?img=3"
+                                        alt="Imen el hakim"
+                                        class="w-12 h-12 rounded-full object-cover contact-avatar-mobile">
+                                </div>
+                                <div class="ml-4 flex-1 overflow-hidden">
+                                    <div
+                                        class="font-semibold text-gray-800 truncate max-sm:text-sm">Imen
+                                        el hakim</div>
+                                    <div
+                                        class="text-sm text-gray-500 truncate max-sm:text-xs">Professeur
+                                        UX design</div>
+                                </div>
+                                <span
+                                    class="w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium flex-shrink-0 max-[400px]:w-4 max-[400px]:h-4 max-[400px]:text-[0.6rem]">1</span>
+                            </div>
+
+                            <div
+                                class="contact-item flex items-center p-4 border-b border-gray-100 cursor-pointer relative"
+                                data-contact-name="Emma rbii"
+                                onclick="showChat('Emma rbii', 'Professeur Angular', 'ER', false)">
+                                <div class="relative flex-shrink-0">
+                                    <div
+                                        class="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center text-white text-lg font-bold contact-avatar-mobile">ER</div>
+                                </div>
+                                <div class="ml-4 flex-1 overflow-hidden">
+                                    <div
+                                        class="font-semibold text-gray-800 truncate max-sm:text-sm">Emma
+                                        rbii</div>
+                                    <div
+                                        class="text-sm text-gray-500 truncate max-sm:text-xs">Professeur
+                                        Angular</div>
+                                </div>
+                                <span
+                                    class="w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium flex-shrink-0 max-[400px]:w-4 max-[400px]:h-4 max-[400px]:text-[0.6rem]">1</span>
+                            </div>
+
+                            <div
+                                class="contact-item flex items-center p-4 border-b border-gray-100 cursor-pointer relative"
+                                data-contact-name="mohamed hosni"
+                                onclick="showChat('mohamed hosni', 'Professeur mobile', 'https://i.pravatar.cc/150?img=5', false)">
+                                <div class="relative flex-shrink-0">
+                                    <img src="https://i.pravatar.cc/150?img=5"
+                                        alt="mohamed hosni"
+                                        class="w-12 h-12 rounded-full object-cover contact-avatar-mobile">
+                                </div>
+                                <div class="ml-4 flex-1 overflow-hidden">
+                                    <div
+                                        class="font-semibold text-gray-800 truncate max-sm:text-sm">mohamed
+                                        hosni</div>
+                                    <div
+                                        class="text-sm text-gray-500 truncate max-sm:text-xs">Professeur
+                                        mobile</div>
+                                </div>
+                                <span
+                                    class="w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium flex-shrink-0 max-[400px]:w-4 max-[400px]:h-4 max-[400px]:text-[0.6rem]">1</span>
+                            </div>
+
+                            <div
+                                class="contact-item flex items-center p-4 border-b border-gray-100 cursor-pointer relative"
+                                data-contact-name="Saif khemiri"
+                                onclick="showChat('Saif khemiri', 'Étudiant twinI', 'https://i.pravatar.cc/150?img=6', false)">
+                                <div class="relative flex-shrink-0">
+                                    <img src="https://i.pravatar.cc/150?img=6"
+                                        alt="Saif khemiri"
+                                        class="w-12 h-12 rounded-full object-cover contact-avatar-mobile">
+                                </div>
+                                <div class="ml-4 flex-1 overflow-hidden">
+                                    <div
+                                        class="font-semibold text-gray-800 truncate max-sm:text-sm">Saif
+                                        khemiri</div>
+                                    <div
+                                        class="text-sm text-gray-500 truncate max-sm:text-xs">Étudiant
+                                        twinI</div>
+                                </div>
+                                <span
+                                    class="w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium flex-shrink-0 max-[400px]:w-4 max-[400px]:h-4 max-[400px]:text-[0.6rem]">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chat-panel"
+                        class="flex-1 flex flex-col max-sm:hidden">
+                        <div id="chat-header"
+                            class="flex items-center p-4 border-b border-gray-200 flex-shrink-0 max-sm:p-3">
+                            <button id="back-to-contacts"
+                                class="hidden text-gray-500 hover:text-gray-700 mr-3 max-sm:inline-block max-[400px]:mr-2"
+                                onclick="hideChat()">
+                                <svg
+                                    class="w-6 h-6 max-[400px]:w-5 max-[400px]:h-5"
+                                    fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24"><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            </button>
+
+                            <div id="contact-info" class="flex items-center">
+                                <div class="relative flex-shrink-0">
+                                    <img id="contact-avatar"
+                                        src="https://i.pravatar.cc/150?img=1"
+                                        alt="Contact Avatar"
+                                        class="w-12 h-12 rounded-full object-cover max-[400px]:w-10 max-[400px]:h-10">
+                                    <span id="contact-status"
+                                        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                                </div>
+                                <div class="ml-3 max-[400px]:ml-2">
+                                    <div id="contact-name"
+                                        class="font-semibold text-gray-800 max-[400px]:text-sm">Imen
+                                        el hakim</div>
+                                    <div id="contact-title"
+                                        class="text-sm text-gray-500 max-[400px]:text-xs">Professeur
+                                        UX design</div>
+                                </div>
+                            </div>
+                            <div
+                                class="ml-auto flex items-center gap-4 text-gray-400 max-[400px]:gap-2">
+                                <button
+                                    class="hover:text-gray-600 max-[400px]:hidden">
+                                    <svg class="w-6 h-6" fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                    </svg>
+                                </button>
+                                <button
+                                    class="hover:text-gray-600 max-[400px]:w-5 max-[400px]:h-5">
+                                    <svg
+                                        class="w-6 h-6 max-[400px]:w-5 max-[400px]:h-5"
+                                        fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M4 6h16M4 12h16m-7 6h7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="messages-area"
+                            class="flex-1 p-6 space-y-4 overflow-y-auto max-sm:p-4 max-[400px]:p-2">
+
+                            <div class="flex justify-start">
+                                <img src="https://i.pravatar.cc/150?img=1"
+                                    alt="Imen el hakim"
+                                    class="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-auto">
+                                <div
+                                    class="ml-3 max-w-xs md:max-w-sm lg:max-w-md msg-bubble-wrapper max-[400px]:ml-2">
+                                    <div
+                                        class="bg-purple-100 text-gray-800 p-3 rounded-tr-xl rounded-b-xl shadow-sm max-[400px]:text-sm max-[400px]:p-2">
+                                        Bonjour Madame Imen, avez-vous reçu le
+                                        rapport de projet?
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end">
+                                <div
+                                    class="mr-3 max-w-xs md:max-w-sm lg:max-w-md msg-bubble-wrapper max-[400px]:mr-2">
+                                    <div
+                                        class="bg-purple-600 text-white p-3 rounded-tl-xl rounded-b-xl shadow-md max-[400px]:text-sm max-[400px]:p-2">
+                                        Non, je ne l'ai pas encore reçu.
+                                    </div>
+                                </div>
+                                <img src="https://i.pravatar.cc/150?img=10"
+                                    alt="User"
+                                    class="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-auto">
+                            </div>
+
+                            <div
+                                class="text-center text-xs text-gray-400 py-2">Yesterday</div>
+
+                            <div class="flex justify-start">
+                                <img src="https://i.pravatar.cc/150?img=1"
+                                    alt="Imen el hakim"
+                                    class="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-auto">
+                                <div
+                                    class="ml-3 max-w-xs md:max-w-sm lg:max-w-md msg-bubble-wrapper max-[400px]:ml-2">
+                                    <div
+                                        class="bg-purple-100 text-gray-800 p-3 rounded-tr-xl rounded-b-xl shadow-sm max-[400px]:text-sm max-[400px]:p-2">
+                                        D'accord, je vous l'envoie ici, à la fin
+                                        de la journée, si vous plaît.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-start">
+                                <img src="https://i.pravatar.cc/150?img=1"
+                                    alt="Imen el hakim"
+                                    class="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-auto">
+                                <div
+                                    class="ml-3 max-w-xs md:max-w-sm lg:max-w-md msg-bubble-wrapper max-[400px]:ml-2">
+                                    <div
+                                        class="bg-white border border-gray-200 p-3 rounded-tr-xl rounded-b-xl shadow-sm flex items-center gap-3 max-[400px]:p-2 max-[400px]:gap-2">
+                                        <svg
+                                            class="w-6 h-6 text-red-500 flex-shrink-0 max-[400px]:w-5 max-[400px]:h-5"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                                        </svg>
+                                        <div>
+                                            <div
+                                                class="font-medium text-sm text-gray-800 max-[400px]:text-xs">project_report.pdf</div>
+                                            <div
+                                                class="text-xs text-gray-500 max-[400px]:text-[0.6rem]">2.5
+                                                MB</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end">
+                                <div
+                                    class="mr-3 max-w-xs md:max-w-sm lg:max-w-md msg-bubble-wrapper max-[400px]:mr-2">
+                                    <div
+                                        class="bg-purple-600 text-white p-3 rounded-tl-xl rounded-b-xl shadow-md max-[400px]:text-sm max-[400px]:p-2">
+                                        Très bien. Est-ce que je dois aussi vous
+                                        le renvoyer par e-mail après l'avoir
+                                        complété ?
+                                    </div>
+                                </div>
+                                <img src="https://i.pravatar.cc/150?img=10"
+                                    alt="User"
+                                    class="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-auto">
+                            </div>
+
+                            <div class="flex justify-start">
+                                <img src="https://i.pravatar.cc/150?img=1"
+                                    alt="Imen el hakim"
+                                    class="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-auto">
+                                <div
+                                    class="ml-3 max-w-xs md:max-w-sm lg:max-w-md msg-bubble-wrapper max-[400px]:ml-2">
+                                    <div
+                                        class="bg-purple-100 text-gray-800 p-3 rounded-tr-xl rounded-b-xl shadow-sm max-[400px]:text-sm max-[400px]:p-2">
+                                        Oui, merci. J'ajouterai ensuite les
+                                        autres membres de l'équipe au document.
+                                    </div>
+                                    <div
+                                        class="bg-white border border-gray-200 text-center text-purple-600 font-medium py-2 mt-2 rounded-xl w-16 float-right max-[400px]:text-xs max-[400px]:w-12 max-[400px]:py-1">
+                                        OK
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="p-4 border-t border-gray-200 flex items-center gap-3 flex-shrink-0 chat-input-area max-[400px]:gap-2">
+                            <button
+                                class="text-gray-400 hover:text-purple-600 max-[400px]:w-5 max-[400px]:h-5">
+                                <svg class="w-6 h-6" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                </svg>
+                            </button>
+                            <button
+                                class="text-gray-400 hover:text-purple-600 max-[400px]:w-5 max-[400px]:h-5">
+                                <svg class="w-6 h-6" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-9-9h4M4 20h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </button>
+                            <input type="text"
+                                placeholder="Taper votre message..."
+                                class="flex-1 px-4 py-2 bg-gray-100 rounded-full outline-none focus:ring-2 focus:ring-purple-600 max-[400px]:px-3 max-[400px]:py-1.5 max-[400px]:text-sm">
+                            <button
+                                class="text-purple-600 hover:text-purple-700 max-[400px]:w-5 max-[400px]:h-5">
+                                <svg class="w-6 h-6 rotate-90"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+        // Sidebar navigation
+        const sidebarItems = document.querySelectorAll('.side-bar-item, .side-bar-home');
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => {
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+
+        // --- Mobile Responsiveness Logic ---
+        const contactList = document.getElementById('contact-list');
+        const chatPanel = document.getElementById('chat-panel');
+        const contactAvatar = document.getElementById('contact-avatar');
+        const contactStatus = document.getElementById('contact-status');
+        const contactName = document.getElementById('contact-name');
+        const contactTitle = document.getElementById('contact-title');
+        
+        // Use a function to check mobile state to react to changes
+        const isMobileCheck = () => window.innerWidth < 640; 
+        let isMobile = isMobileCheck();
+
+        window.addEventListener('resize', () => {
+            isMobile = isMobileCheck();
+            // On resize, ensure view is consistent (e.g., if switching from mobile to desktop, display both)
+            if (!isMobile) {
+                contactList.classList.remove('hide-on-mobile');
+                chatPanel.classList.remove('hide-on-mobile');
+                chatPanel.classList.remove('show-on-mobile'); // Clean up mobile-specific classes
+            } else {
+                 // On mobile, if a chat is active, ensure it is shown
+                 if (chatPanel.classList.contains('show-on-mobile')) {
+                    contactList.classList.add('hide-on-mobile');
+                 } else {
+                    contactList.classList.remove('hide-on-mobile');
+                 }
+            }
+        });
+
+        function showChat(name, title, avatarSource, isOnline) {
+            // Update the chat header information
+            contactName.textContent = name;
+            contactTitle.textContent = title;
+            
+            // Handle avatar (Simplified logic based on previous script)
+            if (avatarSource.startsWith('https://')) {
+                contactAvatar.src = avatarSource;
+                contactAvatar.classList.remove('hidden');
+            } else {
+                // If initials (e.g., 'ER'), this is where you'd typically swap the image for a div with initials
+                // For simplicity/compatibility with the current HTML structure, we keep the image element.
+                // In a real application, you'd insert a <div> with the initials if the avatarSource wasn't an image URL.
+                contactAvatar.src = 'placeholder_for_initials.png'; // Fallback / Example
+                contactAvatar.classList.remove('hidden');
+            }
+            
+            // Handle status
+            if (isOnline) {
+                contactStatus.classList.remove('hidden');
+                contactStatus.classList.remove('bg-gray-400');
+                contactStatus.classList.add('bg-green-500');
+            } else {
+                 contactStatus.classList.add('hidden');
+            }
+
+            // On mobile, hide contact list and show chat panel
+            if (isMobileCheck()) {
+                contactList.classList.add('hide-on-mobile');
+                chatPanel.classList.add('show-on-mobile');
+            }
+            
+            // Update active contact visual state
+            document.querySelectorAll('.contact-item').forEach(item => item.classList.remove('active'));
+            // Find the clicked item by name to set it active
+            document.querySelectorAll('.contact-item').forEach(item => {
+                if (item.getAttribute('data-contact-name') === name) {
+                    item.classList.add('active');
+                }
+            });
+
+             // Scroll to bottom of messages area after opening chat
+            const messagesArea = document.getElementById('messages-area');
+            if (messagesArea) {
+                messagesArea.scrollTop = messagesArea.scrollHeight;
+            }
+        }
+
+        function hideChat() {
+            // Only applicable on mobile
+            if (isMobileCheck()) {
+                contactList.classList.remove('hide-on-mobile');
+                chatPanel.classList.remove('show-on-mobile');
+            }
+        }
+    </script>
+
+    </body>
+</html>
