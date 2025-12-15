@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linkpro - Liste des Étudiants</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Linkpro - Liste des Étudiants</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <style>
         * {
             font-family: 'Poppins', sans-serif;
         }
@@ -39,251 +41,357 @@
             transform: rotate(180deg);
         }
     </style>
-</head>
-<body class="bg-gray-50">
+    </head>
+    <body class="bg-gray-50">
 
-    <!-- Navigation -->
-    <nav class="bg-white px-10 py-4 flex items-center justify-between border-b max-sm:px-5 sticky top-0 z-50">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
-                <span class="text-white font-bold text-sm">L</span>
+        <!-- Navigation -->
+        <nav
+            class="bg-white px-10 py-4 flex items-center justify-between border-b max-sm:px-5 sticky top-0 z-50">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">L</span>
+                </div>
+                <span class="text-2xl font-bold">Linkpro</span>
             </div>
-            <span class="text-2xl font-bold">Linkpro</span>
-        </div>
 
-        <div class="flex-1 max-w-md mx-8 max-sm:hidden">
-            <div class="relative">
-                <input type="text" placeholder="Search" class="w-full px-5 py-2 bg-gray-100 rounded-full border border-gray-200 outline-none focus:border-purple-600">
-                <svg class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+            <div class="flex-1 max-w-md mx-8 max-sm:hidden">
+                <div class="relative">
+                    <input type="text" placeholder="Search"
+                        class="w-full px-5 py-2 bg-gray-100 rounded-full border border-gray-200 outline-none focus:border-purple-600">
+                    <svg
+                        class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
             </div>
-        </div>
 
-        <div class="flex items-center gap-6">
-            <button class="relative hover:bg-gray-100 p-2 rounded-lg transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-            </button>
-            <button class="relative hover:bg-gray-100 p-2 rounded-lg transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-                <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
-            </button>
-            <button class="relative hover:bg-gray-100 p-2 rounded-lg transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-                <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">1</span>
-            </button>
-            <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full max-sm:hidden cursor-pointer"></div>
-        </div>
-    </nav>
+            <div class="flex items-center gap-6">
+                <button
+                    class="relative hover:bg-gray-100 p-2 rounded-lg transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button
+                    class="relative hover:bg-gray-100 p-2 rounded-lg transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <span
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
+                </button>
+                <button
+                    class="relative hover:bg-gray-100 p-2 rounded-lg transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">1</span>
+                </button>
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full max-sm:hidden cursor-pointer"></div>
+            </div>
+        </nav>
 
-    <!-- Main Content -->
-    <div class="flex justify-between gap-6 p-6 max-w-[1400px] mx-auto">
-        <!-- Left Sidebar -->
-        <div class="w-56 flex-shrink-0 max-lg:hidden">
-            <div class="bg-white rounded-lg border border-gray-200 p-5 sticky top-20">
-                <ul class="space-y-4">
-                    <li class="side-bar-home flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                        </svg>
-                        Home
-                    </li>
-                    <li class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                        </svg>
-                        Projects
-                    </li>
-                    <li class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Questions
-                    </li>
-                    <li class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-                        </svg>
-                        Responses
-                    </li>
-                    <li class="side-bar-item active flex items-center gap-3 cursor-pointer relative font-medium text-purple-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                        Liste des étudiants
-                    </li>
-                </ul>
+        <!-- Main Content -->
+        <div class="flex justify-between gap-6 p-6 max-w-[1400px] mx-auto">
+            <!-- Left Sidebar -->
+            <div class="w-56 flex-shrink-0 max-lg:hidden">
+                <div
+                    class="bg-white rounded-lg border border-gray-200 p-5 sticky top-20">
+                    <ul class="space-y-4">
+                        <li
+                            class="side-bar-home flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <a href="../home.html"
+                                class="flex items-center gap-3 w-full h-full">
+                                <svg class="w-5 h-5" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                                Home
+                            </a>
+                        </li>
 
-                <div class="w-full h-px bg-gray-200 my-6"></div>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                            </svg>
+                            Projects
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Questions
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                            </svg>
+                            Responses
+                        </li>
+                        <li
+                            class="side-bar-item flex items-center gap-3 cursor-pointer relative font-medium hover:text-purple-600">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            Liste des profs
+                        </li>
+                    </ul>
 
-                <div>
-                    <h3 class="font-semibold mb-4 text-sm">Categories</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between text-sm hover:text-purple-600 cursor-pointer">
-                            <span>Javascript</span>
-                            <span class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded">+99</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm hover:text-purple-600 cursor-pointer">
-                            <span>Php</span>
-                            <span class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded">+99</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm hover:text-purple-600 cursor-pointer">
-                            <span>React</span>
-                            <span class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded">+99</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm hover:text-purple-600 cursor-pointer">
-                            <span>Css</span>
-                            <span class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded">+99</span>
+                    <div class="w-full h-px bg-gray-200 my-6"></div>
+
+                    <div>
+                        <h3 class="font-semibold mb-4 text-sm">Categories</h3>
+                        <div class="space-y-3">
+                            <div
+                                class="flex items-center justify-between text-sm hover:text-purple-600 cursor-pointer">
+                                <span>Javascript</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded">+99</span>
+                            </div>
+                            <div
+                                class="flex items-center justify-between text-sm hover:text-purple-600 cursor-pointer">
+                                <span>Php</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded">+99</span>
+                            </div>
+                            <div
+                                class="flex items-center justify-between text-sm hover:text-purple-600 cursor-pointer">
+                                <span>React</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded">+99</span>
+                            </div>
+                            <div
+                                class="flex items-center justify-between text-sm hover:text-purple-600 cursor-pointer">
+                                <span>Css</span>
+                                <span
+                                    class="text-xs px-2 py-0.5 bg-gray-100 border border-gray-200 rounded">+99</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Main Content Area -->
-        <div class="flex-1 max-w-5xl mx-auto">
-            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                <!-- Back Button -->
-                <div class="p-4 border-b border-gray-200">
-                    <button onclick="history.back()" class="px-4 py-2 text-purple-600 hover:bg-purple-50 rounded-lg font-medium transition flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                        </svg>
-                        Retour
-                    </button>
-                </div>
-
-                <!-- Title Section -->
-                <div class="px-8 pt-6 pb-4">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Liste des Étudiants - Informatique 4ème</h1>
-                    <p class="text-gray-600">Voici la liste de tous les étudiants inscrits en Informatique, classe 4ème</p>
-                </div>
-
-                <!-- Search Bar -->
-                <div class="px-8 pb-6">
-                    <div class="relative">
-                        <input 
-                            type="text" 
-                            id="searchStudent" 
-                            placeholder="Rechercher un étudiant..." 
-                            class="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100 transition"
-                        >
-                        <svg class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Students Table -->
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead class="bg-gray-50 border-y border-gray-200">
-                            <tr>
-                                <th onclick="sortStudentTable(0)" class="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
-                                    <div class="flex items-center gap-2">
-                                        Nom
-                                        <svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 10l5 5 5-5H7z" />
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th onclick="sortStudentTable(1)" class="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
-                                    <div class="flex items-center gap-2">
-                                        Email
-                                        <svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 10l5 5 5-5H7z" />
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th onclick="sortStudentTable(2)" class="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition max-md:hidden">
-                                    <div class="flex items-center gap-2">
-                                        Spécialité
-                                        <svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 10l5 5 5-5H7z" />
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th onclick="sortStudentTable(3)" class="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition max-md:hidden">
-                                    <div class="flex items-center gap-2">
-                                        Classe
-                                        <svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 10l5 5 5-5H7z" />
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="studentTableBody" class="divide-y divide-gray-200">
-                            <!-- Les étudiants sont ajoutés par JS -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Bottom Action Buttons -->
-                <div class="p-6 border-t border-gray-200 bg-gray-50">
-                    <div class="flex justify-center gap-4 max-sm:flex-col">
-                        <button 
-                            onclick="window.location.href='question-express.html'"
-                            class="flex-1 max-w-[200px] max-sm:max-w-full px-6 py-3 bg-emerald-500 text-white rounded-lg font-semibold hover:bg-emerald-600 transition transform hover:-translate-y-1"
-                        >
-                            ❓ Question Express
-                        </button>
-                        <button 
-                            onclick="window.location.href='chat-bot.html'"
-                            class="flex-1 max-w-[200px] max-sm:max-w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition transform hover:-translate-y-1"
-                        >
-                            🤖 Chat Bot
+            <!-- Main Content Area -->
+            <div class="flex-1 max-w-5xl mx-auto">
+                <div
+                    class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <!-- Back Button -->
+                    <div class="p-4 border-b border-gray-200">
+                        <button onclick="history.back()"
+                            class="px-4 py-2 text-purple-600 hover:bg-purple-50 rounded-lg font-medium transition flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                            Retour
                         </button>
                     </div>
+
+                    <!-- Title Section -->
+                    <div class="px-8 pt-6 pb-4">
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">Liste
+                            des Étudiants - Informatique 4ème</h1>
+                        <p class="text-gray-600">Voici la liste de tous les
+                            étudiants inscrits en Informatique, classe 4ème</p>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="px-8 pb-6">
+                        <div class="relative">
+                            <input
+                                type="text"
+                                id="searchStudent"
+                                placeholder="Rechercher un étudiant..."
+                                class="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100 transition">
+                            <svg
+                                class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+                                fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Students Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50 border-y border-gray-200">
+                                <tr>
+                                    <th onclick="sortStudentTable(0)"
+                                        class="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                        <div class="flex items-center gap-2">
+                                            Nom
+                                            <svg class="w-4 h-4 sort-icon"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M7 10l5 5 5-5H7z" />
+                                            </svg>
+                                        </div>
+                                    </th>
+                                    <th onclick="sortStudentTable(1)"
+                                        class="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                        <div class="flex items-center gap-2">
+                                            Email
+                                            <svg class="w-4 h-4 sort-icon"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M7 10l5 5 5-5H7z" />
+                                            </svg>
+                                        </div>
+                                    </th>
+                                    <th onclick="sortStudentTable(2)"
+                                        class="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition max-md:hidden">
+                                        <div class="flex items-center gap-2">
+                                            Spécialité
+                                            <svg class="w-4 h-4 sort-icon"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M7 10l5 5 5-5H7z" />
+                                            </svg>
+                                        </div>
+                                    </th>
+                                    <th onclick="sortStudentTable(3)"
+                                        class="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition max-md:hidden">
+                                        <div class="flex items-center gap-2">
+                                            Classe
+                                            <svg class="w-4 h-4 sort-icon"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M7 10l5 5 5-5H7z" />
+                                            </svg>
+                                        </div>
+                                    </th>
+                                    <th
+                                        class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentTableBody"
+                                class="divide-y divide-gray-200">
+                                <!-- Les étudiants sont ajoutés par JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Bottom Action Buttons -->
+                    <div class="p-6 border-t border-gray-200 bg-gray-50">
+                        <div class="flex justify-center gap-4 max-sm:flex-col">
+                            <button
+                                onclick="window.location.href='question-express.html'"
+                                class="flex-1 max-w-[200px] max-sm:max-w-full px-6 py-3 bg-emerald-500 text-white rounded-lg font-semibold hover:bg-emerald-600 transition transform hover:-translate-y-1">
+                                ❓ Question Express
+                            </button>
+                            <button
+                                onclick="window.location.href='chat-bot.html'"
+                                class="flex-1 max-w-[200px] max-sm:max-w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition transform hover:-translate-y-1">
+                                🤖 Chat Bot
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar - Stats -->
+            <div class="w-72 flex-shrink-0 max-xl:hidden">
+                <div
+                    class="bg-white rounded-lg border border-gray-200 p-5 sticky top-20">
+                    <h3 class="font-semibold text-lg mb-4">Statistiques</h3>
+
+                    <div class="space-y-4">
+                        <div
+                            class="p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg">
+                            <div
+                                class="text-3xl font-bold text-purple-600">3</div>
+                            <div class="text-sm text-gray-600 mt-1">Total
+                                Étudiants</div>
+                        </div>
+
+                        <div
+                            class="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg">
+                            <div
+                                class="text-3xl font-bold text-blue-600">100%</div>
+                            <div class="text-sm text-gray-600 mt-1">Taux de
+                                Présence</div>
+                        </div>
+
+                        <div
+                            class="p-4 bg-gradient-to-br from-emerald-50 to-green-50 rounded-lg">
+                            <div
+                                class="text-3xl font-bold text-emerald-600">3</div>
+                            <div class="text-sm text-gray-600 mt-1">En
+                                ligne</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h4 class="font-semibold text-sm mb-3">Actions
+                            rapides</h4>
+                        <div class="space-y-2">
+                            <button
+                                class="w-full px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition">
+                                Exporter la liste
+                            </button>
+                            <button
+                                class="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-lg text-sm font-medium hover:bg-purple-50 transition">
+                                Ajouter étudiant
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Right Sidebar - Stats -->
-        <div class="w-72 flex-shrink-0 max-xl:hidden">
-            <div class="bg-white rounded-lg border border-gray-200 p-5 sticky top-20">
-                <h3 class="font-semibold text-lg mb-4">Statistiques</h3>
-
-                <div class="space-y-4">
-                    <div class="p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg">
-                        <div class="text-3xl font-bold text-purple-600">3</div>
-                        <div class="text-sm text-gray-600 mt-1">Total Étudiants</div>
-                    </div>
-
-                    <div class="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg">
-                        <div class="text-3xl font-bold text-blue-600">100%</div>
-                        <div class="text-sm text-gray-600 mt-1">Taux de Présence</div>
-                    </div>
-
-                    <div class="p-4 bg-gradient-to-br from-emerald-50 to-green-50 rounded-lg">
-                        <div class="text-3xl font-bold text-emerald-600">3</div>
-                        <div class="text-sm text-gray-600 mt-1">En ligne</div>
-                    </div>
-                </div>
-
-                <div class="mt-6 pt-6 border-t border-gray-200">
-                    <h4 class="font-semibold text-sm mb-3">Actions rapides</h4>
-                    <div class="space-y-2">
-                        <button class="w-full px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition">
-                            Exporter la liste
-                        </button>
-                        <button class="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-lg text-sm font-medium hover:bg-purple-50 transition">
-                            Ajouter étudiant
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
+        <script>
         // Sidebar navigation
         const sidebarItems = document.querySelectorAll('.side-bar-item, .side-bar-home');
         sidebarItems.forEach(item => {
@@ -400,5 +508,5 @@
         }
     </script>
 
-</body>
+    </body>
 </html>
