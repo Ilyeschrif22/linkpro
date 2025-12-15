@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une nouvelle tâche - Linkpro</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Styles personnalisés minimaux -->
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .form-input:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #7c3aed;
+        }
+        .priority-option {
+            transition: all 0.2s;
+        }
+        .priority-option:hover {
+            transform: translateY(-2px);
+        }
+        .priority-option.selected {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Container principal -->
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-52 bg-white border-r border-gray-200 fixed h-full">
+            <!-- Logo -->
+            <div class="p-6">
+                <div class="flex items-center gap-2">
+                    <img src="images/a5453ba7a2249b54623083d67e3e7c95df97c290.png" alt="Linkpro Logo" class="h-8 w-auto">
+                </div>
+            </div>
+
+            <!-- Menu principal -->
+            <nav class="px-4 space-y-1" aria-label="Navigation principale">
+                <a href="index.html" class="hover:bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700" aria-label="Accueil">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    <span class="font-medium">Home</span>
+                </a>
+                <a href="project-details.html" class="bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 font-medium" aria-label="Projets">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                    </svg>
+                    <span class="font-medium">Projects</span>
+                </a>
+                <a href="#" class="hover:bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700" aria-label="Questions">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="font-medium">Questions</span>
+                </a>
+                <a href="#" class="hover:bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700" aria-label="Réponses">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                    </svg>
+                    <span class="font-medium">Responses</span>
+                </a>
+                <a href="#" class="hover:bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700" aria-label="Liste des professeurs">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <span class="font-medium">Liste des profs</span>
+                </a>
+            </nav>
+
+            <!-- Categories -->
+            <div class="px-4 mt-8">
+                <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3">Categories</h3>
+                <div class="space-y-1">
+                    <a href="#" class="hover:bg-gray-50 flex items-center justify-between px-3 py-2 rounded-lg text-gray-700">
+                        <span class="text-sm">Javascript</span>
+                        <span class="text-xs text-gray-400">+99</span>
+                    </a>
+                    <a href="#" class="hover:bg-gray-50 flex items-center justify-between px-3 py-2 rounded-lg text-gray-700">
+                        <span class="text-sm">Php</span>
+                        <span class="text-xs text-gray-400">+99</span>
+                    </a>
+                    <a href="#" class="hover:bg-gray-50 flex items-center justify-between px-3 py-2 rounded-lg text-gray-700">
+                        <span class="text-sm">React</span>
+                        <span class="text-xs text-gray-400">+99</span>
+                    </a>
+                    <a href="#" class="hover:bg-gray-50 flex items-center justify-between px-3 py-2 rounded-lg text-gray-700">
+                        <span class="text-sm">Css</span>
+                        <span class="text-xs text-gray-400">+99</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-52 flex-1">
+            <!-- Header -->
+            <header class="bg-white border-b border-gray-200 px-8 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Logo Linkpro -->
+                    <div class="flex items-center gap-2">
+                        <img src="images/a5453ba7a2249b54623083d67e3e7c95df97c290.png" alt="Linkpro Logo" class="h-8 w-auto">
+                    </div>
+                    
+                    <!-- Search Bar -->
+                    <div class="flex-1 max-w-md mx-8">
+                        <div class="relative">
+                            <input type="text" placeholder="Search" class="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white">
+                            <svg class="w-5 h-5 text-gray-400 absolute right-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Right side icons -->
+                    <div class="flex items-center gap-4">
+                        <button class="w-10 h-10 bg-purple-600 hover:bg-purple-700 rounded-full flex items-center justify-center transition-colors" aria-label="Ajouter">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                        </button>
+                        <button class="p-2 hover:bg-gray-100 rounded-full relative" aria-label="Notifications">
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center" aria-label="3 notifications">3</span>
+                        </button>
+                        <button class="p-2 hover:bg-gray-100 rounded-full relative" aria-label="Messages">
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center" aria-label="9 messages">9</span>
+                        </button>
+                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden cursor-pointer hover:ring-2 hover:ring-purple-500 transition-all">
+                            <div class="w-full h-full bg-gradient-to-br from-purple-400 to-purple-600"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="p-8">
+                <!-- Breadcrumbs -->
+                <div class="mb-6">
+                    <a href="project-details.html" class="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        <span class="font-medium">Retour au projet</span>
+                    </a>
+                    <div class="text-sm text-gray-500">
+                        <span class="hover:text-gray-700 cursor-pointer">Dashboard</span>
+                        <span class="mx-2">→</span>
+                        <span class="hover:text-gray-700 cursor-pointer">Projets Actifs</span>
+                        <span class="mx-2">→</span>
+                        <span class="hover:text-gray-700 cursor-pointer">IA Chatbot</span>
+                        <span class="mx-2">→</span>
+                        <span class="text-gray-900 font-medium">Nouvelle tâche</span>
+                    </div>
+                </div>
+
+                <!-- Main Card -->
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                        <!-- Header avec gradient -->
+                        <div class="bg-gradient-to-r from-purple-600 to-purple-400 px-8 py-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h1 class="text-2xl font-bold text-white">Créer une nouvelle tâche</h1>
+                                    <p class="text-purple-100 text-sm mt-1">Remplissez les informations ci-dessous pour créer une nouvelle tâche</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Formulaire -->
+                        <form class="p-8 space-y-6">
+                            <!-- Titre de la tâche -->
+                            <div>
+                                <label for="task-title" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    <span class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        Titre de la tâche *
+                                    </span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="task-title" 
+                                    name="task-title" 
+                                    placeholder="Ex: Améliorer modèle NLP"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all form-input"
+                                    required
+                                >
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <label for="task-description" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    <span class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                                        </svg>
+                                        Description
+                                    </span>
+                                </label>
+                                <textarea 
+                                    id="task-description" 
+                                    name="task-description" 
+                                    rows="4"
+                                    placeholder="Décrivez les détails de la tâche..."
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all form-input resize-none"
+                                ></textarea>
+                            </div>
+
+                            <!-- Priorité et Statut -->
+                            <div class="grid grid-cols-2 gap-6">
+                                <!-- Priorité -->
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-3">
+                                        <span class="flex items-center gap-2">
+                                            <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                            </svg>
+                                            Priorité *
+                                        </span>
+                                    </label>
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <button type="button" class="priority-option p-4 border-2 border-gray-200 rounded-lg hover:border-red-300 hover:bg-red-50 transition-all text-center" data-priority="high">
+                                            <div class="w-3 h-3 bg-red-500 rounded-full mx-auto mb-2"></div>
+                                            <span class="text-sm font-medium text-gray-700">HIGH</span>
+                                        </button>
+                                        <button type="button" class="priority-option p-4 border-2 border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all text-center" data-priority="medium">
+                                            <div class="w-3 h-3 bg-blue-500 rounded-full mx-auto mb-2"></div>
+                                            <span class="text-sm font-medium text-gray-700">MEDIUM</span>
+                                        </button>
+                                        <button type="button" class="priority-option p-4 border-2 border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-all text-center" data-priority="low">
+                                            <div class="w-3 h-3 bg-green-500 rounded-full mx-auto mb-2"></div>
+                                            <span class="text-sm font-medium text-gray-700">LOW</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Statut -->
+                                <div>
+                                    <label for="task-status" class="block text-sm font-semibold text-gray-700 mb-2">
+                                        <span class="flex items-center gap-2">
+                                            <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                            </svg>
+                                            Statut *
+                                        </span>
+                                    </label>
+                                    <select 
+                                        id="task-status" 
+                                        name="task-status"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all form-input"
+                                        required
+                                    >
+                                        <option value="">Sélectionner un statut</option>
+                                        <option value="todo">A Faire</option>
+                                        <option value="in-progress">En Cours</option>
+                                        <option value="done">Terminé</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Assigné et Durée -->
+                            <div class="grid grid-cols-2 gap-6">
+                                <!-- Assigné à -->
+                                <div>
+                                    <label for="task-assignee" class="block text-sm font-semibold text-gray-700 mb-2">
+                                        <span class="flex items-center gap-2">
+                                            <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                            </svg>
+                                            Assigné à *
+                                        </span>
+                                    </label>
+                                    <select 
+                                        id="task-assignee" 
+                                        name="task-assignee"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all form-input"
+                                        required
+                                    >
+                                        <option value="">Sélectionner un membre</option>
+                                        <option value="oussema">Oussema Kachti</option>
+                                        <option value="imen">Imen Rzigui</option>
+                                        <option value="mohamed">Mohamed Jebali</option>
+                                        <option value="chaima">Chaima Khelifi</option>
+                                    </select>
+                                </div>
+
+                                <!-- Durée -->
+                                <div>
+                                    <label for="task-duration" class="block text-sm font-semibold text-gray-700 mb-2">
+                                        <span class="flex items-center gap-2">
+                                            <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            Durée (jours) *
+                                        </span>
+                                    </label>
+                                    <input 
+                                        type="number" 
+                                        id="task-duration" 
+                                        name="task-duration" 
+                                        min="1"
+                                        placeholder="Ex: 5"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all form-input"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <!-- Progression -->
+                            <div>
+                                <label for="task-progress" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    <span class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                        Progression initiale (%)
+                                    </span>
+                                </label>
+                                <div class="space-y-3">
+                                    <input 
+                                        type="range" 
+                                        id="task-progress" 
+                                        name="task-progress" 
+                                        min="0" 
+                                        max="100" 
+                                        value="0"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                                    >
+                                    <div class="flex justify-between text-xs text-gray-500">
+                                        <span>0%</span>
+                                        <span id="progress-value" class="font-semibold text-purple-600">0%</span>
+                                        <span>100%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="progress-bar" class="bg-gradient-to-r from-purple-600 to-purple-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Date d'échéance -->
+                            <div>
+                                <label for="task-deadline" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    <span class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        Date d'échéance
+                                    </span>
+                                </label>
+                                <input 
+                                    type="date" 
+                                    id="task-deadline" 
+                                    name="task-deadline"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all form-input"
+                                >
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="flex items-center justify-end gap-4 pt-6 border-t border-gray-200">
+                                <a href="project-details.html" class="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors">
+                                    Annuler
+                                </a>
+                                <button 
+                                    type="submit" 
+                                    class="px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-400 text-white font-medium rounded-lg hover:opacity-90 transition-opacity shadow-lg shadow-purple-500/25"
+                                >
+                                    <span class="flex items-center gap-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Créer la tâche
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Gestion de la progression
+        const progressSlider = document.getElementById('task-progress');
+        const progressValue = document.getElementById('progress-value');
+        const progressBar = document.getElementById('progress-bar');
+
+        progressSlider.addEventListener('input', (e) => {
+            const value = e.target.value;
+            progressValue.textContent = value + '%';
+            progressBar.style.width = value + '%';
+        });
+
+        // Gestion de la priorité
+        const priorityOptions = document.querySelectorAll('.priority-option');
+        priorityOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                priorityOptions.forEach(opt => {
+                    opt.classList.remove('selected', 'border-purple-500', 'bg-purple-50');
+                });
+                option.classList.add('selected', 'border-purple-500', 'bg-purple-50');
+            });
+        });
+
+        // Gestion du formulaire
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Ici tu peux ajouter la logique pour sauvegarder la tâche
+            alert('Tâche créée avec succès !');
+            window.location.href = 'project-details.html';
+        });
+    </script>
+</body>
+</html>
+
