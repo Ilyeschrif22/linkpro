@@ -1,0 +1,191 @@
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact-prof.css">
+    <link rel="stylesheet" href="./homechat.css">
+    <link rel="stylesheet" href="./chat-prof.css">
+
+
+
+</head>
+
+<body>
+
+<header>
+    <div class="nav-bar">
+        <img class="logo-img" src="./icons/Linkpro.svg">
+
+        <div class="search-bar">
+            <input class="search-bar-input" placeholder="Search">
+            <img src="./icons/search-icon.svg">
+        </div>
+
+        <div class="action-icons">
+            <img src="./icons/add-icon.svg">
+            <img src="./icons/chat-icon.svg">
+            <img src="./icons/notification-icon.svg">
+            <div class="avatar-frame"></div>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <!-- NAV ICONS (MOBILE) -->
+    <div class="nav-icons">
+        <ul class="nav-list">
+            <li class="nav-item-home active">
+                <img src="./icons/home-icon.svg" class="side-bar-icons home-icon">
+            </li>
+            <li class="nav-item"><img src="./icons/projects-icon.svg" class="side-bar-icons"></li>
+            <li class="nav-item"><img src="./icons/questions-icons.svg" class="side-bar-icons"></li>
+            <li class="nav-item"><img src="./icons/responses-icon.svg" class="side-bar-icons"></li>
+            <li class="nav-item"><img src="./icons/professors-icon.svg" class="side-bar-icons"></li>
+            <img src="./icons/hamburger-menu-icon.svg" class="hamburger-menu">
+        </ul>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="side-bar">
+        <ul class="side-bar-list">
+            <li class="side-bar-home active">
+                <img src="./icons/home-icon.svg" class="side-bar-icons home-icon">
+                Home
+            </li>
+            <li class="side-bar-item"><img src="./icons/projects-icon.svg" class="side-bar-icons">Projects</li>
+            <li class="side-bar-item"><img src="./icons/questions-icons.svg" class="side-bar-icons">Questions</li>
+            <li class="side-bar-item"><img src="./icons/responses-icon.svg" class="side-bar-icons">Responses</li>
+            <li class="side-bar-item"><img src="./icons/professors-icon.svg" class="side-bar-icons">Professors list</li>
+        </ul>
+
+        <div class="seperating-line"></div>
+
+        <div class="categories-container">
+            <p class="categories-title">Categories</p>
+
+            <div class="categories-section">
+                <ul class="categories-list">
+                    <li class="categorie-item">React</li>
+                    <li class="categorie-item">Javascript</li>
+                    <li class="categorie-item">Php</li>
+                    <li class="categorie-item">Css</li>
+                </ul>
+
+                <div class="categories-number-list">
+                    <div class="categorie-item-number">+99</div>
+                    <div class="categorie-item-number">+99</div>
+                    <div class="categorie-item-number">+99</div>
+                    <div class="categorie-item-number">+99</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT RIGHT -->
+    <div class="content-container">
+        <button class="back-btn" onclick="history.back()">← Retour</button>
+    
+        <div class="homechat-container">
+            <div class="homechat-welcome">
+                <h1>Liste des Étudiants - Informatique 4ème</h1>
+                <p>Voici la liste de tous les étudiants inscrits en Informatique, classe 4ème :</p>
+            </div>
+    
+            <!-- Barre de recherche -->
+            <div class="teacher-search">
+                <input type="text" id="searchStudent" placeholder="Rechercher un étudiant...">
+            </div>
+    
+            <!-- Tableau des étudiants -->
+            <table class="teacher-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortStudentTable(0)">Nom ⬍</th>
+                        <th onclick="sortStudentTable(1)">Email ⬍</th>
+                        <th onclick="sortStudentTable(2)">Spécialité ⬍</th>
+                        <th onclick="sortStudentTable(3)">Classe ⬍</th>
+                        <th>Action</th> <!-- Nouvelle colonne -->
+
+                        
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    <!-- Les étudiants sont ajoutés par JS -->
+                </tbody>
+            </table>
+            <div class="homechat-top-actions">
+                <button class="homechat-top-btn express" onclick="window.location.href='question-express.html'">
+                    ❓ Question Express
+                    <button class="homechat-top-btn bot" onclick="window.location.href='chat-bot.html'">
+                        🤖 Chat Bot
+                    </button>            </div>
+        </div>
+    </div>
+    
+    <script>
+    // Liste des étudiants Informatique 4ème
+    const students = [
+        {name:"Ali Ben Ahmed", email:"ali@esprit.tn", speciality:"Informatique", classe:"4ème",},
+        {name:"Sara Ben Youssef", email:"sara@esprit.tn", speciality:"Informatique", classe:"4ème"},
+        {name:"Mohamed Trabelsi", email:"mohamed@esprit.tn", speciality:"Informatique", classe:"4ème"},
+    ];
+    
+    // Affichage initial
+    const tableBody = document.getElementById("studentTableBody");
+    students.forEach(s => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${s.name}</td>
+            <td>${s.email}</td>
+            <td>${s.speciality}</td>
+            <td>${s.classe}</td>
+                <td>
+            <button class="popular-contact-btn" onclick="window.location.href='chat-student.html?student=${encodeURIComponent(s.name)}'">
+                Contacter
+            </button>
+        </td>
+        `;
+        tableBody.appendChild(row);
+    });
+    
+    // Recherche
+    document.getElementById("searchStudent").addEventListener("keyup", function() {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll("#studentTableBody tr");
+        rows.forEach(row => {
+            const match = Array.from(row.children).some(td => td.textContent.toLowerCase().includes(filter));
+            row.style.display = match ? "" : "none";
+        });
+    });
+    
+    // Tri simple
+    let sortDirectionStudent = [];
+    function sortStudentTable(colIndex) {
+        const table = document.querySelector(".teacher-table tbody");
+        const rows = Array.from(table.querySelectorAll("tr"));
+        if (!sortDirectionStudent[colIndex]) sortDirectionStudent[colIndex] = 'asc';
+    
+        rows.sort((a,b)=>{
+            let aText = a.children[colIndex].textContent.toLowerCase();
+            let bText = b.children[colIndex].textContent.toLowerCase();
+            if(aText < bText) return sortDirectionStudent[colIndex]==='asc' ? -1 : 1;
+            if(aText > bText) return sortDirectionStudent[colIndex]==='asc' ? 1 : -1;
+            return 0;
+        });
+    
+        sortDirectionStudent[colIndex] = sortDirectionStudent[colIndex]==='asc'?'desc':'asc';
+        table.innerHTML = "";
+        rows.forEach(r=>table.appendChild(r));
+    }
+    </script>
+    
+    </body>
+    </html>

@@ -1,0 +1,137 @@
+/* TITRE */
+.homechat-welcome h1 {
+    font-size: 26px;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.homechat-welcome p {
+    font-size: 16px;
+    color: #6B7280;
+    margin-bottom: 20px;
+}
+.teacher-search {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start; /* aligné à gauche */
+}
+
+.teacher-search input {
+    padding: 10px 15px;
+    width: 300px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.teacher-search input:focus {
+    outline: none;
+    border-color: #5B21B6;
+    box-shadow: 0 0 5px rgba(91,33,182,0.3);
+}
+.teacher-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* espace entre les lignes */
+}
+
+.teacher-table th,
+.teacher-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.teacher-table th {
+    background-color: #f3f4f6;
+    color: #111827;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.teacher-table tbody tr {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* STATUT EN LIGNE / HORS LIGNE */
+.teacher-table td:nth-child(4) {
+    font-weight: 600;
+}
+
+.teacher-table td:nth-child(4)::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.teacher-table td:nth-child(4):contains("En ligne")::before {
+    background-color: #10B981; /* vert */
+}
+
+.teacher-table td:nth-child(4):contains("Hors ligne")::before {
+    background-color: #EF4444; /* rouge */
+}
+
+/* BOUTON CONTACTER */
+.popular-contact-btn {
+    padding: 8px 14px;
+    background-color: #5B21B6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.popular-contact-btn:hover {
+    background-color: #4b1aa1;
+    transform: translateY(-2px);
+}
+/* STATUT */
+.status {
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* En ligne */
+.status.online {
+    color: #10B981; /* texte vert */
+}
+
+.status.online::before {
+    background-color: #10B981; /* cercle vert */
+}
+
+/* Hors ligne */
+.status.offline {
+    color: #EF4444; /* texte rouge */
+}
+
+.status.offline::before {
+    background-color: #EF4444; /* cercle rouge */
+}

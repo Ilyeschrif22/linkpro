@@ -1,0 +1,107 @@
+/* Boîte de chat */
+.chat-box {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+/* Messages */
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* Style message */
+.message {
+    padding: 10px 14px;
+    border-radius: 16px;
+    max-width: 70%;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+}
+
+/* Bot messages */
+.message.bot {
+    background-color: #3B82F6;
+    color: #fff;
+    align-self: flex-start;
+}
+
+.message.bot::before {
+    content: "🤖";
+    font-size: 20px;
+}
+
+/* User messages */
+.message.user {
+    background-color: #10B981;
+    color: #fff;
+    align-self: flex-end;
+}
+
+/* Nom de l’expéditeur */
+.sender {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Input et bouton */
+.chat-input {
+    display: flex;
+    gap: 12px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+.chat-input button {
+    padding: 12px 22px;
+    background-color: #5B21B6;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.chat-input button:hover {
+    background-color: #4b1aa1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Scrollbar personnalisé */
+.messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #c4c4c4;
+    border-radius: 3px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}

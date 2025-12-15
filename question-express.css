@@ -1,0 +1,81 @@
+
+
+
+
+.messages {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 70%;
+    display: inline-block;
+    background-color: #e5e7eb;
+}
+
+.message .sender {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.message .text {
+    word-wrap: break-word;
+}
+
+.message-student {
+    background-color: #10B981;
+    color: #fff;
+    align-self: flex-start;
+}
+
+.reply-btn {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #3B82F6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.reply-btn:hover {
+    background-color: #2563EB;
+}
+
+.new-question {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.new-question input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.submit-btn {
+    padding: 10px 15px;
+    background-color: #5B21B6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #4b1aa1;
+}
+
