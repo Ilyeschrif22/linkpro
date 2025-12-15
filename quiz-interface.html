@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz JavaScript Basics - Linkpro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .option-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .option-card:hover {
+            transform: translateX(8px);
+            border-color: #9333ea;
+            background-color: #faf5ff;
+        }
+        .option-card.selected {
+            border-color: #9333ea;
+            background-color: #f3e8ff;
+            border-width: 2px;
+        }
+        .option-card.correct {
+            border-color: #10b981;
+            background-color: #d1fae5;
+            border-width: 2px;
+        }
+        .option-card.incorrect {
+            border-color: #ef4444;
+            background-color: #fee2e2;
+            border-width: 2px;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .timer-pulse {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-52 bg-white border-r border-gray-200 fixed h-full">
+            <div class="p-6">
+                <div class="flex items-center gap-2">
+                    <img src="images/a5453ba7a2249b54623083d67e3e7c95df97c290.png" alt="Linkpro Logo" class="h-8 w-auto">
+                </div>
+            </div>
+
+            <nav class="px-4 space-y-1" aria-label="Navigation principale">
+                <a href="index.html" class="hover:bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    <span class="font-medium">Home</span>
+                </a>
+                <a href="project-details.html" class="hover:bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                    </svg>
+                    <span class="font-medium">Projects</span>
+                </a>
+                <a href="#" class="hover:bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="font-medium">Questions</span>
+                </a>
+                <a href="#" class="hover:bg-gray-100 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                    </svg>
+                    <span class="font-medium">Responses</span>
+                </a>
+            </nav>
+
+            <div class="px-4 mt-8">
+                <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3">Categories</h3>
+                <div class="space-y-1">
+                    <a href="#" class="hover:bg-gray-50 flex items-center justify-between px-3 py-2 rounded-lg text-gray-700">
+                        <span class="text-sm">Javascript</span>
+                        <span class="text-xs text-gray-400">+99</span>
+                    </a>
+                    <a href="#" class="hover:bg-gray-50 flex items-center justify-between px-3 py-2 rounded-lg text-gray-700">
+                        <span class="text-sm">Php</span>
+                        <span class="text-xs text-gray-400">+99</span>
+                    </a>
+                    <a href="#" class="hover:bg-gray-50 flex items-center justify-between px-3 py-2 rounded-lg text-gray-700">
+                        <span class="text-sm">React</span>
+                        <span class="text-xs text-gray-400">+99</span>
+                    </a>
+                    <a href="#" class="hover:bg-gray-50 flex items-center justify-between px-3 py-2 rounded-lg text-gray-700">
+                        <span class="text-sm">Css</span>
+                        <span class="text-xs text-gray-400">+99</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-52 flex-1">
+            <!-- Header -->
+            <header class="bg-white border-b border-gray-200 px-8 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <img src="images/a5453ba7a2249b54623083d67e3e7c95df97c290.png" alt="Linkpro Logo" class="h-8 w-auto">
+                    </div>
+                    
+                    <div class="flex-1 max-w-md mx-8">
+                        <div class="relative">
+                            <input type="text" placeholder="Search" class="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white">
+                            <svg class="w-5 h-5 text-gray-400 absolute right-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <button class="w-10 h-10 bg-purple-600 hover:bg-purple-700 rounded-full flex items-center justify-center transition-colors">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                        </button>
+                        <button class="p-2 hover:bg-gray-100 rounded-full relative">
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center">3</span>
+                        </button>
+                        <button class="p-2 hover:bg-gray-100 rounded-full relative">
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center">9</span>
+                        </button>
+                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden cursor-pointer hover:ring-2 hover:ring-purple-500 transition-all">
+                            <div class="w-full h-full bg-gradient-to-br from-purple-400 to-purple-600"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Quiz Content -->
+            <div class="p-8">
+                <!-- Quiz Header -->
+                <div class="bg-white rounded-2xl p-6 mb-6 border border-gray-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-4">
+                            <a href="game-center.html" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                                </svg>
+                            </a>
+                            <div>
+                                <h1 class="text-2xl font-bold text-gray-900">📜 JavaScript Basics</h1>
+                                <p class="text-gray-500 text-sm">Testez vos connaissances en JavaScript</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="text-center">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span class="text-2xl font-bold text-gray-900 timer-pulse" id="timer">14:45</span>
+                                </div>
+                                <p class="text-xs text-gray-500">Temps restant</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                    </svg>
+                                    <span class="text-2xl font-bold text-purple-600">+100</span>
+                                </div>
+                                <p class="text-xs text-gray-500">Points possibles</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mb-2">
+                        <div class="flex items-center justify-between text-sm mb-2">
+                            <span class="text-gray-600 font-medium">Question 3 sur 10</span>
+                            <span class="text-purple-600 font-semibold">30%</span>
+                        </div>
+                        <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-purple-600 to-purple-400 rounded-full transition-all duration-500" style="width: 30%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="bg-white rounded-2xl p-8 mb-6 border border-gray-200">
+                    <div class="mb-8">
+                        <div class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-sm font-semibold rounded-full mb-4">
+                            Question 3
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-3">
+                            Quelle méthode permet d'ajouter un élément à la fin d'un tableau en JavaScript ?
+                        </h2>
+                        <p class="text-gray-500">Sélectionnez la bonne réponse</p>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="space-y-4">
+                        <div class="option-card border-2 border-gray-200 rounded-xl p-5 flex items-center gap-4" onclick="selectOption(this)">
+                            <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-gray-600">A</span>
+                            </div>
+                            <span class="text-lg text-gray-800">array.append()</span>
+                        </div>
+
+                        <div class="option-card border-2 border-gray-200 rounded-xl p-5 flex items-center gap-4" onclick="selectOption(this)">
+                            <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-gray-600">B</span>
+                            </div>
+                            <span class="text-lg text-gray-800">array.push()</span>
+                        </div>
+
+                        <div class="option-card border-2 border-gray-200 rounded-xl p-5 flex items-center gap-4" onclick="selectOption(this)">
+                            <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-gray-600">C</span>
+                            </div>
+                            <span class="text-lg text-gray-800">array.add()</span>
+                        </div>
+
+                        <div class="option-card border-2 border-gray-200 rounded-xl p-5 flex items-center gap-4" onclick="selectOption(this)">
+                            <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-gray-600">D</span>
+                            </div>
+                            <span class="text-lg text-gray-800">array.insert()</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex items-center justify-between">
+                    <button class="px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        Précédent
+                    </button>
+
+                    <button class="px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-400 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2">
+                        Suivant
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Help Card -->
+                <div class="mt-6 bg-purple-50 border border-purple-200 rounded-xl p-4 flex items-start gap-3">
+                    <svg class="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div>
+                        <p class="text-sm text-purple-900 font-medium mb-1">💡 Astuce</p>
+                        <p class="text-sm text-purple-700">Vous pouvez revenir en arrière pour modifier vos réponses avant de soumettre le quiz.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Fonction pour sélectionner une option
+        function selectOption(element) {
+            // Retirer la classe selected de toutes les options
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            // Ajouter la classe selected à l'option cliquée
+            element.classList.add('selected');
+        }
+
+        // Timer countdown
+        let timeLeft = 885; // 14:45 en secondes
+        const timerElement = document.getElementById('timer');
+        
+        setInterval(() => {
+            timeLeft--;
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 60) {
+                timerElement.classList.add('text-red-600');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
