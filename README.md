@@ -1,6 +1,6 @@
 # LinkPro - Plateforme de Mentorat pour Étudiants Ingénieurs
 
-![LinkPro Logo](./icons/Linkpro.svg)
+![LinkPro Logo](./icons/Linkpro.png)
 
 ---
 
