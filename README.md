@@ -52,9 +52,55 @@
 ![Capture d'écran Membre 2](./screenshots/screencapture-localhost-8080-all-projects-2025-12-16-09_31_38.png)
 *Description: Portfolio de [Nom Membre 2] avec ses réalisations en design UI/UX.*
 
-### Page de [Binome 3]
-![Capture d'écran Membre 3](./screenshots/member3.png)
-*Description: Profil technique de [Nom Membre 3] détaillant ses compétences backend.*
+## 💬 Nouvelle Section : Fonctionnalités de Chat & Messagerie
+
+LinkPro intègre un système complet de messagerie instantanée pour faciliter les échanges entre étudiants, professeurs et le chatbot intelligent.
+
+### Captures d'Écran du Système de Chat
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 30px 0;">
+  <div style="text-align: center;">
+    <img src="./screenshots/home-chat.png" width="400" alt="Accueil Chat"/>
+    <p><strong>1. Accueil Messagerie (ProLink Chat)</strong><br>Choix rapide entre contacter un professeur ou un étudiant.</p>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="./screenshots/contact-prof.png" width="400" alt="Liste des Professeurs"/>
+    <p><strong>2. Liste des Professeurs</strong><br>Recherche et contact direct avec statut en ligne/hors ligne.</p>
+  </div>
+ <div style="text-align: center;">
+    <img src="./screenshots/chat-prof.png" width="400" alt="Chat avec Professeur"/>
+    <p><strong>3. Chat avec un Professeur</strong><br>Discussion privée avec échange de messages en temps réel.</p>
+  </div>
+
+<div style="text-align: center;">
+    <img src="./screenshots/contact-etudient.png" width="400" alt="Contact Professeur"/>
+    <p><strong>4. Sélection du Profil Étudiant</strong><br>Choix de la spécialité et classe pour un matching précis.</p>
+  </div>
+  <div style="text-align: center;">
+    <img src="./screenshots/liste-etudiants.png" width="400" alt="Liste des Étudiants"/>
+    <p><strong>5. Liste des Étudiants</strong><br>Gestion par classe avec statistiques de présence et actions rapides.</p>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="./screenshots/chat-etudiant.png" width="400" alt="Chat avec Étudiant"/>
+    <p><strong>6. Chat avec un Étudiant</strong><br>Collaboration entre pairs pour discuter de projets ou s'entraider.</p>
+  </div>
+<div style="text-align: center;">
+    <img src="./screenshots/chat-bot.png" width="400" alt="Chat Bot"/>
+    <p><strong>7. Chat Bot</strong><br>Assistant IA disponible 24/7 pour répondre aux questions sur les cours, projets ou examens.</p>
+  </div>
+  
+  <div style="text-align: center;">
+    <img src="./screenshots/question-express.png" width="400" alt="Question Express"/>
+    <p><strong>8. Question Express</strong><br>Accès ultra-rapide au Chat Bot depuis n’importe quelle page de l’application. Posez une question urgente et obtenez une réponse immédiate en un clic !</p>
+  </div>
+
+</div>
+
+> **Bonus** : Boutons "Question Express" et "Chat Bot" disponibles sur toutes les pages pour un accès rapide à l'aide.
+
+---
 
 ---
 
