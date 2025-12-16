@@ -33,6 +33,20 @@
 ![Capture d'écran Membre 1](./screenshots/cap3.png)
 *Description: Page de chat*
 
+### 📱 Description: Responsive mode
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+  <img src="./screenshots/cap4.png" width="240"/>
+  <img src="./screenshots/cap5.png" width="240"/>
+  <img src="./screenshots/cap6.png" width="240"/>
+  <img src="./screenshots/cap7.png" width="240"/>
+  <img src="./screenshots/cap8.png" width="240"/>
+  <img src="./screenshots/cap9.png" width="240"/>
+  <img src="./screenshots/cap10.png" width="240"/>
+</div>
+
+
+
 
 ### Page de [Binome 2]
 ![Capture d'écran Membre 2](./screenshots/member2.png)
