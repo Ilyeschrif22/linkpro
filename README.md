@@ -33,20 +33,17 @@
 ![Capture d'écran Membre 1](./screenshots/cap3.png)
 *Description: Page de chat*
 
-![Capture d'écran Membre 1](./screenshots/cap4.png)
-*Description: Responsive mode*
+### 📱 Description: Responsive mode
 
-![Capture d'écran Membre 1](./screenshots/cap5.png)
-
-![Capture d'écran Membre 1](./screenshots/cap6.png)
-
-![Capture d'écran Membre 1](./screenshots/cap7.png)
-
-![Capture d'écran Membre 1](./screenshots/cap8.png)
-
-![Capture d'écran Membre 1](./screenshots/cap9.png)
-
-![Capture d'écran Membre 1](./screenshots/cap10.png)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+  <img src="./screenshots/cap4.png" width="150"/>
+  <img src="./screenshots/cap5.png" width="150"/>
+  <img src="./screenshots/cap6.png" width="150"/>
+  <img src="./screenshots/cap7.png" width="150"/>
+  <img src="./screenshots/cap8.png" width="150"/>
+  <img src="./screenshots/cap9.png" width="150"/>
+  <img src="./screenshots/cap10.png" width="150"/>
+</div>
 
 
 
