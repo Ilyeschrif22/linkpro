@@ -20,9 +20,19 @@
 
 ## 📸 Captures d'Écran des Pages des Membres
 
-### Page de [Binome 1]
+### Pages de [Binome 1]
+![Capture d'écran Membre 1](./screenshots/cap0.png)
+*Description: Landing page linkpro*
+
 ![Capture d'écran Membre 1](./screenshots/cap1.png)
-*Description: Page personnelle de [Nom Membre 1] présentant son profil, compétences et projets.*
+*Description: Home page linkpro*
+
+![Capture d'écran Membre 1](./screenshots/cap2.png)
+*Description: Page de creation de post*
+
+![Capture d'écran Membre 1](./screenshots/cap3.png)
+*Description: Page de chat*
+
 
 ### Page de [Binome 2]
 ![Capture d'écran Membre 2](./screenshots/member2.png)
