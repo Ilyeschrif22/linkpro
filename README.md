@@ -1,92 +1,148 @@
-# Linkpro Dashboard
+# LinkPro - Plateforme de Mentorat pour Étudiants Ingénieurs
 
-Interface de tableau de bord pour Linkpro créée avec HTML, CSS et Tailwind CSS.
+![LinkPro Logo](./icons/Linkpro.svg)
 
-## Structure du projet
+---
+
+## Informations du Groupe
+
+**Nom du Groupe:** [Linkro]
+
+### 👥 Membres de l'Équipe
+
+| Membre | Rôle | Page Personnelle |
+|--------|------|------------------|
+| **[Nom Membre 1]** | Développeur Frontend / Designer UI/UX  | [Lien vers page](#) |
+| **[Nom Membre 2]** | Développeur Frontend / Designer UI/UX | [Lien vers page](#) |
+| **[Nom Membre 3]** | Développeur Frontend / Designer UI/UX n | [Lien vers page](#) |
+
+
+---
+
+## 📸 Captures d'Écran des Pages des Membres
+
+### Page de [Nom Membre 1]
+![Capture d'écran Membre 1](./screenshots/member1.png)
+*Description: Page personnelle de [Nom Membre 1] présentant son profil, compétences et projets.*
+
+### Page de [Nom Membre 2]
+![Capture d'écran Membre 2](./screenshots/member2.png)
+*Description: Portfolio de [Nom Membre 2] avec ses réalisations en design UI/UX.*
+
+### Page de [Nom Membre 3]
+![Capture d'écran Membre 3](./screenshots/member3.png)
+*Description: Profil technique de [Nom Membre 3] détaillant ses compétences backend.*
+
+### Page de [Nom Membre 4]
+![Capture d'écran Membre 4](./screenshots/member4.png)
+*Description: Page de [Nom Membre 4] présentant son expérience en testing et documentation.*
+
+---
+
+## 🚀 Détails du Projet
+
+### Nom de l'Application
+**LinkPro** - Transformez vos idées en projets réussis
+
+### Description
+
+LinkPro est une plateforme innovante conçue pour connecter les étudiants ingénieurs avec des mentors experts en développement. Notre mission est de transformer les idées brillantes des étudiants en projets professionnels concrets grâce à un accompagnement personnalisé.
+
+#### 🎯 Objectifs Principaux
+
+- **Mentorat Personnalisé**: Connecter chaque étudiant avec un mentor adapté à ses besoins et objectifs
+- **Apprentissage Pratique**: Permettre aux étudiants de travailler sur des projets réels avec guidance experte
+- **Développement de Compétences**: Faciliter l'acquisition de compétences techniques et professionnelles
+- **Réseau Professionnel**: Créer une communauté active d'étudiants, mentors et professionnels
+
+#### ✨ Fonctionnalités Clés
+
+1. **Système de Matching Mentor-Étudiant**
+   - Algorithme de recommandation basé sur les compétences et objectifs
+   - Profils détaillés des mentors avec expertise vérifiée
+   - Consultation gratuite avant engagement
+
+2. **Gestion de Projets**
+   - Création et suivi de projets de A à Z
+   - Définition du scope et création de roadmaps
+   - Suivi des étapes et jalons du projet
+
+3. **Support Multi-Technologies**
+   - Web: React, Vue.js, Angular
+   - Mobile: React Native, Flutter
+   - Backend: Node.js, Python, Java
+   - Domaines spécialisés: IA, Machine Learning, Data Science, DevOps
+
+4. **Communauté et Collaboration**
+   - Forums de discussion
+   - Partage de ressources et tutoriels
+   - Événements et workshops en ligne
+
+5. **Opportunités Professionnelles**
+   - Accès à des offres d'emploi exclusives
+   - Connexions avec des entreprises partenaires
+   - Portfolio professionnel intégré
+
+## 🛠️ Technologies Utilisées
+
+### Frontend
+
+| Technologie | Version | Description |
+|-------------|---------|-------------|
+| **HTML5** | - | Structure et sémantique des pages |
+| **CSS3** | - | Styles et animations |
+| **Tailwind CSS** | 3.x | Framework CSS utility-first pour le design responsive |
+| **JavaScript (ES6+)** | - | Interactivité et fonctionnalités dynamiques |
+
+### Design & UI/UX
+
+| Outil | Utilisation |
+|-------|-------------|
+| **Google Fonts (Poppins)** | Typographie moderne et professionnelle |
+| **SVG** | Icons et illustrations vectorielles |
+| **Responsive Design** | Compatible de 350px à desktop (1920px+) |
+
+### Outils de Développement
+
+| Outil | Utilisation |
+|-------|-------------|
+| **Git** | Contrôle de version |
+| **GitHub** | Hébergement du code et collaboration |
+| **VS Code** | Éditeur de code |
+| **Chrome DevTools** | Débogage et test responsive |
+
+
+## 📁 Structure du Projet
 
 ```
-linkpro-dashboard/
-├── index.html      # Fichier HTML principal
-├── styles.css      # Styles CSS personnalisés
-└── README.md       # Ce fichier
+linkpro/
+├── index.html              # Page d'accueil principale
+├── home.html               # Page d'accueil utilisateur connecté
+├── icons/                  # Dossier des icônes et images
+│   ├── Linkpro.svg        # Logo de l'application
+│   └── businesswoman-working.svg
+├── screenshots/            # Captures d'écran pour README
+│   ├── member1.png
+│   ├── member2.png
+│   ├── member3.png
+│   └── member4.png
+└── README.md              # Documentation du projet
 ```
 
-## Technologies utilisées
+---
 
-- **HTML5** : Structure de la page
-- **Tailwind CSS** : Framework CSS via CDN (chargé automatiquement)
-- **CSS personnalisé** : Styles additionnels dans `styles.css`
+## 🎨 Palette de Couleurs
 
-## Comment exécuter le code
+| Couleur | Code Hex | Utilisation |
+|---------|----------|-------------|
+| **Purple Primary** | `#5B21B6` | Couleur principale, boutons, accents |
+| **Purple Light** | `#F3E8FF` | Backgrounds, icônes |
+| **Purple Hover** | `#6D28D9` | États hover |
+| **Gray Dark** | `#1F2937` | Texte principal |
+| **Gray Medium** | `#6B7280` | Texte secondaire |
+| **Gray Light** | `#F9FAFB` | Backgrounds sections |
+| **White** | `#FFFFFF` | Backgrounds, texte sur purple |
 
-### Méthode 1 : Ouvrir directement dans le navigateur (le plus simple)
+---
 
-1. Double-clique sur le fichier `idnex.html`
-2. Il s'ouvrira automatiquement dans ton navigateur par défaut
-
-### Méthode 2 : Via un serveur local (recommandé pour le développement)
-
-#### Option A : Avec Python (si installé)
-```bash
-# Python 3
-python -m http.server 8000
-
-# Puis ouvre ton navigateur sur : http://localhost:8000/idnex.html
-```
-
-#### Option B : Avec Node.js (si installé)
-```bash
-# Installe http-server globalement
-npm install -g http-server
-
-# Lance le serveur
-http-server
-
-# Puis ouvre ton navigateur sur l'URL affichée (généralement http://localhost:8080)
-```
-
-#### Option C : Avec VS Code
-1. Installe l'extension "Live Server" dans VS Code
-2. Clic droit sur `idnex.html` → "Open with Live Server"
-
-## Où est Tailwind CSS ?
-
-Tailwind CSS est chargé automatiquement via **CDN** (Content Delivery Network) dans le fichier HTML à la ligne 7 :
-
-```html
-<script src="https://cdn.tailwindcss.com"></script>
-```
-
-Cela signifie que :
-- ✅ Pas besoin d'installation
-- ✅ Pas besoin de compilation
-- ✅ Fonctionne directement dans le navigateur
-- ✅ Tu peux utiliser toutes les classes Tailwind directement
-
-## Personnalisation
-
-### Remplacer les images
-
-Les placeholders d'images sont marqués avec des commentaires HTML. Remplace-les par :
-
-```html
-<!-- Pour les projets -->
-<img src="chemin/vers/image.png" alt="Description" class="w-full h-full object-cover">
-
-<!-- Pour les badges -->
-<img src="chemin/vers/badge.png" alt="Badge" class="w-full h-full object-cover">
-
-<!-- Pour la photo de profil -->
-<img src="chemin/vers/profile.jpg" alt="Profile" class="w-full h-full object-cover">
-```
-
-### Modifier les styles
-
-- **Classes Tailwind** : Modifie directement les classes dans le HTML
-- **Styles personnalisés** : Modifie le fichier `styles.css`
-
-## Notes
-
-- Le fichier fonctionne sans serveur web, mais certains navigateurs peuvent bloquer les requêtes locales
-- Pour un environnement de production, considère installer Tailwind CSS localement pour de meilleures performances
-
+**© 2025 LinkPro. Tous droits réservés. Transformez vos idées en projets réussis.**
