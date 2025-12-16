@@ -33,6 +33,22 @@
 ![Capture d'écran Membre 1](./screenshots/cap3.png)
 *Description: Page de chat*
 
+![Capture d'écran Membre 1](./screenshots/cap4.png)
+*Description: Responsive mode*
+
+![Capture d'écran Membre 1](./screenshots/cap5.png)
+
+![Capture d'écran Membre 1](./screenshots/cap6.png)
+
+![Capture d'écran Membre 1](./screenshots/cap7.png)
+
+![Capture d'écran Membre 1](./screenshots/cap8.png)
+
+![Capture d'écran Membre 1](./screenshots/cap9.png)
+
+![Capture d'écran Membre 1](./screenshots/cap10.png)
+
+
 
 ### Page de [Binome 2]
 ![Capture d'écran Membre 2](./screenshots/member2.png)
