@@ -49,7 +49,7 @@
 
 
 ### Page de [Binome 2]
-![Capture d'écran Membre 2](./screenshots/member2.png)
+![Capture d'écran Membre 2](./screenshots/screencapture-localhost-8080-all-projects-2025-12-16-09_31_38.png)
 *Description: Portfolio de [Nom Membre 2] avec ses réalisations en design UI/UX.*
 
 ### Page de [Binome 3]
