@@ -12,30 +12,25 @@
 
 | Membre | Rôle | Page Personnelle |
 |--------|------|------------------|
-| **[Binome 1]** | Développeur Frontend / Designer UI/UX  | [https://linkpro-puce.vercel.app/index.html](#) |
-| **[Binome 2]** | Développeur Frontend / Designer UI/UX | [https://linkpro-puce.vercel.app/all-projects.html](#) |
-| **[Binome 3]** | Développeur Frontend / Designer UI/UX n | [Lien vers page](#) |
-
+| **Binome 1** | Développeur Frontend / Designer UI/UX | [Voir la page](https://linkpro-puce.vercel.app/index.html) |
+| **Binome 2** | Développeur Frontend / Designer UI/UX | [Voir la page](https://linkpro-puce.vercel.app/all-projects.html) |
+| **Binome 3** | Développeur Frontend / Designer UI/UX | [Voir la page](https://linkpro-puce.vercel.app/homechat/homechat.html) |
 
 ---
 
 ## 📸 Captures d'Écran des Pages des Membres
 
-### Page de [Nom Membre 1]
+### Page de [Binome 1]
 ![Capture d'écran Membre 1](./screenshots/cap1.png)
 *Description: Page personnelle de [Nom Membre 1] présentant son profil, compétences et projets.*
 
-### Page de [Nom Membre 2]
+### Page de [Binome 2]
 ![Capture d'écran Membre 2](./screenshots/member2.png)
 *Description: Portfolio de [Nom Membre 2] avec ses réalisations en design UI/UX.*
 
-### Page de [Nom Membre 3]
+### Page de [Binome 3]
 ![Capture d'écran Membre 3](./screenshots/member3.png)
 *Description: Profil technique de [Nom Membre 3] détaillant ses compétences backend.*
-
-### Page de [Nom Membre 4]
-![Capture d'écran Membre 4](./screenshots/member4.png)
-*Description: Page de [Nom Membre 4] présentant son expérience en testing et documentation.*
 
 ---
 
