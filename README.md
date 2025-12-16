@@ -22,7 +22,7 @@
 ## 📸 Captures d'Écran des Pages des Membres
 
 ### Page de [Nom Membre 1]
-![Capture d'écran Membre 1](./screenshots/member1.png)
+![Capture d'écran Membre 1](./screenshots/cap1.png)
 *Description: Page personnelle de [Nom Membre 1] présentant son profil, compétences et projets.*
 
 ### Page de [Nom Membre 2]
