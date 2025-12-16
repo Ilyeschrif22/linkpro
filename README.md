@@ -12,9 +12,9 @@
 
 | Membre | Rôle | Page Personnelle |
 |--------|------|------------------|
-| **[Nom Membre 1]** | Développeur Frontend / Designer UI/UX  | [Lien vers page](#) |
-| **[Nom Membre 2]** | Développeur Frontend / Designer UI/UX | [Lien vers page](#) |
-| **[Nom Membre 3]** | Développeur Frontend / Designer UI/UX n | [Lien vers page](#) |
+| **[Binome 1]** | Développeur Frontend / Designer UI/UX  | [https://linkpro-puce.vercel.app/index.html](#) |
+| **[Binome 2]** | Développeur Frontend / Designer UI/UX | [https://linkpro-puce.vercel.app/all-projects.html](#) |
+| **[Binome 3]** | Développeur Frontend / Designer UI/UX n | [Lien vers page](#) |
 
 
 ---
